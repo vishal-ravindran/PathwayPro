@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <div class="centered-form">
+        <h1>Welcome to Pathway Pro...</h1>
+        <h3>Please enter your current role or your top skills</h3>
+
+        <form method="POST" action="{% url 'home' %}" class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <!-- {% if form.captcha.errors %}
+            <div class="error">{{ form.captcha.errors }}</div>
+            {% endif %}
+        
+            {{ form.captcha }} -->
+        
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button type="submit" name="save" class="btn btn-success">Submit</button>
+                </div>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" onclick="clearFields()">Clear</button>
+                </div>
+            </div>
+        </form>
+
+        {% if input2_list %}
+        <div>
+            <h4>Inputs:</h4>
+            <ul>
+                {% for input2_item in input2_list %}
+                <li>{{ input2_item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+
+    </div>
+    <script>
+        function clearFields() {
+            document.getElementById("id_input1").value = "";
+            document.getElementById("id_input2").value = "";
+        }
+    </script>
+
+
+    <!-- <script type="text/javascript" src="/static/Pathway_App/js/script.js"></script> -->
+
+</body>
+</html>

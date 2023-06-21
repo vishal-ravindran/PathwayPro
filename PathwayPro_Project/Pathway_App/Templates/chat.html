@@ -1,0 +1,6 @@
+<!-- chat.html -->
+<form method="post" action="{% url 'chat' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
