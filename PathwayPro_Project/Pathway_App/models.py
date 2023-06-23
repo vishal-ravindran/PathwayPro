@@ -4,7 +4,7 @@ from django.db import models
 
 class Response(models.Model):
     # title = models.CharField(max_length=100)
-    title = models.TextField(max_length=500)
+    title = models.TextField(max_length=100)
 
     skills = models.CharField(max_length=200)
     tools = models.CharField(max_length=200)

@@ -1,6 +1,7 @@
 from django import forms
 # from captcha.fields import CaptchaField
-from captcha.fields import CaptchaField
+from captcha.fields import ReCaptchaField
+
 from django.db import models
 
 
@@ -8,7 +9,9 @@ class ChatForm(forms.Form):
     input1 = forms.CharField(label='Please Enter Your Current Job Title', max_length=200, required=False)
     input2 = forms.CharField(label='Please Enter Your Technical Skills', max_length=200, required=False)
 
-    captcha = CaptchaField()
+    # captcha = CaptchaField()
+    # captcha = ReCaptchaField()
+
     
     def clean(self):
         cleaned_data = super().clean()
@@ -29,3 +32,8 @@ class ChatForm(forms.Form):
 #     skills = models.CharField(max_length=200)
 #     tools = models.CharField(max_length=200)
 #     # Add any other fields you need
+
+
+
+
+

@@ -1,0 +1,33 @@
+.result-box {
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: hsl(246, 80%, 67%);
+    color: #1a202c;
+    border-radius: 5px;
+
+}
+
+.result-title {
+    font-weight: bold;
+}
+.left-container {
+    float: left;
+    width: 40%;
+}
+.right-container {
+    float: right;
+    width: 52%;
+}
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.job-details {
+    margin-left: 30px;
+}

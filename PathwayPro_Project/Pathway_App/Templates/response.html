@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,22 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Response Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/response.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Results</h1>
+    <div class="container py-5">
+        <div class="left-container">
+        <h1 class="mb-4">Response</h1>
+        <div class="result-box">
+            <h3 class="result-title">Job Title:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">{{ response.job_Title }}</li>
+            </ul>
+        </div>
+        <div class="result-box">
+            <h3 class="result-noc">NOC:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">{{ response.NOC }}</li>
+            </ul>
+        </div>
 
-        <ul>
-            {{response}}
-        </ul>
-        <!-- <label for="title">Job Title:</label>
-        <textarea id="title" name="title" rows="3" readonly>{{ response.title }}</textarea><br><br>
+        <div class="result-box">
+            <h3 class="result-education">Education:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">{{ response.Education }}</li>
+            </ul>
+        </div>
 
-        <label for="skills">Skills:</label>
-        <textarea id="skills" name="skills" rows="3" readonly>{{ response.skills }}</textarea><br><br>
+        <div class="result-box">
+            <h3 class="result-salary">Average Salary:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">{{ response.Salary }}</li>
+            </ul>
+        </div>
 
-        <label for="tools">Tools:</label>
-        <textarea id="tools" name="tools" rows="3" readonly>{{ response.tools }}</textarea><br><br> -->
+        <div class="result-box">
+            <h3 class="result-skills">Skills:</h3>
+            <ul class="list-group">
+                {% for skill in response.Skills %}
+                    <li class="list-group-item">{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="result-box">
+            <h3 class="result-tools">Tools:</h3>
+            <ul class="list-group">
+                {% for tool in response.Tools %}
+                    <li class="list-group-item">{{ tool }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+
+    <div class="right-container">
+        <h1 class="mb-4">Similar Jobs</h1>
+        <div class="result-box">
+            <h3 class="result-title">Job Title:</h3>
+            <ul class="list-group">
+                {% for job in result.similar_jobs %}
+                <li class="list-group-item">
+                    <input type="checkbox" id="job-{{ forloop.counter }}" name="selected_jobs" value="{{ job.job_title }}">
+                    <label for="job-{{ forloop.counter }}">
+                        <strong>Job Title:</strong> {{ job.job_title }}<br>
+                        <strong>NOC Code:</strong> {{ job.noc_code }}<br>
+                        <strong>Similarity:</strong> {{ job.percent_similarity }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+
 </body>
 </html>

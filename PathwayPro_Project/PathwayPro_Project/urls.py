@@ -17,11 +17,13 @@ Including another URLconf
 from django import views
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 # from Pathway_App.views import chat
 
 from Pathway_App.views import home, response_view, noc_Result
 import Pathway_App.views
-from captcha import urls as captcha_urls
+# from captcha import urls as captcha_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,7 +32,10 @@ urlpatterns = [
     path('home/', home, name='home1'),
     path('response/<str:response>/', response_view, name='response'),
     path('noc_result/', noc_Result, name='noc_result'),  # Updated view name to 'noc_result'
-    path('', include(captcha_urls)),
+    # path('', include(captcha_urls)),
+    path('similiar_roles/<str:response>/', response_view, name='similiar_roles'),
+
 ]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

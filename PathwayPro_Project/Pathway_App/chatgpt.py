@@ -28,7 +28,7 @@ def generate_response(prompt):
         temperature=temp,  # controls the randomness of the generated response. A higher value like 1.0 makes the output more diverse and creative, while a lower value like 0.2 makes it more focused and deterministic.
         n=n_val,  # represents the number of completions to generate for a single prompt.
         stop=None,  # If a stop string is provided, the model will stop generating text when it encounters that string in the output.
-        echo=True  # Setting echo=True instructs the API to include the original prompt in the response, making it easier to see the context of the conversation.
+        echo=False  # Setting echo=True instructs the API to include the original prompt in the response, making it easier to see the context of the conversation.
     )
     return response.choices[0].text.strip()
 

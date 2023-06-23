@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import dotenv
 from pathlib import Path
+import os
 
+# Load environment variables from .env file
+dotenv.load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,8 +44,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "Pathway_App.apps.PathwayAppConfig",
     'captcha',
-    
-
 
 ]
 
@@ -115,13 +117,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-import mimetypes
+# import mimetypes
 
-mimetypes.add_type("application/javascript", ".js")
+# mimetypes.add_type("application/javascript", ".js")
+
+# RECAPTCHA_PUBLIC_KEY = 'RECAPTCHA_SITE_KEY'
+# RECAPTCHA_PRIVATE_KEY = 'RECAPTCHA_SECRET_KEY'
+
+
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+# RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_SITE_KEY')
+# RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_SECRET_KEY')
